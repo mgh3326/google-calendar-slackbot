@@ -1,0 +1,22 @@
+language: java
+jdk:
+  - openjdk11
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.gradle'
+before_script:
+  - chmod +x gradlew
+# clean 후 Build (Build시 자동으로 test 수행)
+script:
+  - ./gradlew clean build
+  - ./gradlew jacocoTestReport
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+# CI 실행 완료시 메일로 알람
+notifications:
+  email:
+    recipients:
+      - mgh3326@naver.com.com
