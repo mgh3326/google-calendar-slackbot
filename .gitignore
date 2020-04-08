@@ -32,3 +32,6 @@ out/
 .vscode/
 *credentials.json
 *StoredCredential
+
+src/main/resources/application-dev.yml
+src/test/resources/application-test.yml
