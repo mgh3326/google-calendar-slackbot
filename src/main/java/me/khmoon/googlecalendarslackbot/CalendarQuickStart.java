@@ -50,7 +50,6 @@ public class CalendarQuickStart {
      * @return An authorized Credential object.
      * @throws IOException If the credentials.json file cannot be found.
      */
-
     private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
         // Load client secrets.
         InputStream in = CalendarQuickStart.class.getResourceAsStream(CREDENTIALS_FILE_PATH); //credential.json 파일 가져옴
@@ -78,8 +77,6 @@ public class CalendarQuickStart {
                 .setApplicationName(APPLICATION_NAME)
                 .build();
 
-        getRecentEvents(service);
-
         //회의실 전체 조회
         Events events = service.events().list(CALENDER_ID).execute();
         for (Event event : events.getItems()) {
@@ -90,30 +87,6 @@ public class CalendarQuickStart {
         //회의실 등록
         makeEvent();
 
-    }
-
-    private static void getRecentEvents(Calendar service) throws IOException {
-        // List the next 10 events from the primary calendar.
-        DateTime now = new DateTime(System.currentTimeMillis());
-        Events events = service.events().list("primary")
-                .setMaxResults(10)
-                .setTimeMin(now)
-                .setOrderBy("startTime")
-                .setSingleEvents(true)
-                .execute();
-        List<Event> items = events.getItems();
-        if (items.isEmpty()) {
-            System.out.println("No upcoming events found.");
-        } else {
-            System.out.println("Upcoming events");
-            for (Event event : items) {
-                DateTime start = event.getStart().getDateTime();
-                if (start == null) {
-                    start = event.getStart().getDate();
-                }
-                System.out.printf("%s (%s)\n", event.getSummary(), start);
-            }
-        }
     }
 
     public static Event addEvent(Event event) throws IOException, GeneralSecurityException, GoogleJsonResponseException {
