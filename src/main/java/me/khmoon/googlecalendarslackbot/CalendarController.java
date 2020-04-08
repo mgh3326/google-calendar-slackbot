@@ -15,7 +15,7 @@ import java.io.IOException;
 @Controller
 public class CalendarController {
     private static final Logger log = LoggerFactory.getLogger(CalendarController.class);
-    private static final String CALENDER_ID = " frograms.com_qn9959u7gm23qs8fclb08l4cgg@group.calendar.google.com";
+    private static final String CALENDER_ID = "frograms.com_qn9959u7gm23qs8fclb08l4cgg@group.calendar.google.com";
 
     private Calendar calendar;
 
