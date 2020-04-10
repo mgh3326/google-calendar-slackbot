@@ -1,8 +1,7 @@
 package me.khmoon.googlecalendarslackbot.slack.filter;
 
+import lombok.extern.slf4j.Slf4j;
 import me.khmoon.googlecalendarslackbot.slack.service.VerificationService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -14,8 +13,8 @@ import java.security.NoSuchAlgorithmException;
 import java.time.Clock;
 
 @Component
+@Slf4j
 public class VerificationFilter implements Filter {
-    private static final Logger logger = LoggerFactory.getLogger(VerificationFilter.class);
 
     private static final String SIGNING_SECRET = System.getenv("SIGNING_SECRET");
 
@@ -33,7 +32,7 @@ public class VerificationFilter implements Filter {
         String timestamp = wrapper.getHeader("X-Slack-Request-Timestamp");
         String requestBody = wrapper.getBody();
         String signature = wrapper.getHeader("X-Slack-Signature");
-        logger.debug("Request Body: {}", wrapper.getBody());
+        log.debug("Request Body: {}", wrapper.getBody());
         if (verificationService.verify(timestamp, requestBody, signature)) {
             filterChain.doFilter(wrapper, res);
         } else {

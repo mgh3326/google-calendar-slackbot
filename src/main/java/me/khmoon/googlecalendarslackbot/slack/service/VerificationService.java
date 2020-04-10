@@ -1,8 +1,6 @@
 package me.khmoon.googlecalendarslackbot.slack.service;
 
 import org.apache.commons.codec.binary.Hex;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -11,8 +9,6 @@ import java.security.NoSuchAlgorithmException;
 import java.time.Clock;
 
 public class VerificationService {
-    private static final Logger logger = LoggerFactory.getLogger(VerificationService.class);
-
     private static final String VERSION = "v0";
     private static final String ALGORITHM_TYPE = "HmacSHA256";
     private static final long MAX_TIME_DIFF = 3 * 60;

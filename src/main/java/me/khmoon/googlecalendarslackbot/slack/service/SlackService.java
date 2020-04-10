@@ -1,6 +1,7 @@
 package me.khmoon.googlecalendarslackbot.slack.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import me.khmoon.googlecalendarslackbot.common.MeetingRoom;
 import me.khmoon.googlecalendarslackbot.common.ReservationDetails;
 import me.khmoon.googlecalendarslackbot.slack.EventType;
@@ -26,8 +27,6 @@ import me.khmoon.googlecalendarslackbot.slackcalendar.domain.Reservation;
 import me.khmoon.googlecalendarslackbot.slackcalendar.domain.Reservations;
 import me.khmoon.googlecalendarslackbot.slackcalendar.service.SlackCalendarService;
 import me.khmoon.googlecalendarslackbot.utils.BasicParser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.json.Jackson2JsonEncoder;
@@ -38,15 +37,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Objects;
 
-/**
- * @author heebg
- * @version 1.0
- * @date 2019-12-02
- */
 @Service
+@Slf4j
 public class SlackService {
-    private static final Logger logger = LoggerFactory.getLogger(SlackService.class);
 
     private static final String BASE_URL = "https://slack.com/api";
     private static final String TOKEN = "Bearer " + System.getenv("BOT_TOKEN");
@@ -172,7 +167,7 @@ public class SlackService {
     private WebClient initWebClient() {
         ExchangeStrategies strategies = ExchangeStrategies.builder()
             .codecs(config ->
-                config.customCodecs().encoder(new Jackson2JsonEncoder(objectMapper, MediaType.APPLICATION_JSON))
+                    config.customCodecs().register(new Jackson2JsonEncoder(objectMapper, MediaType.APPLICATION_JSON))
             ).build();
         return WebClient.builder()
             .exchangeStrategies(strategies)
@@ -182,11 +177,11 @@ public class SlackService {
     }
 
     private void send(String url, Object dto) {
-        String response = webClient.post()
-            .uri(url)
-            .body(BodyInserters.fromValue(dto))
-            .exchange().block().bodyToMono(String.class)
-            .block();
-        logger.debug("WebClient Response: {}", response);
+        String response = Objects.requireNonNull(webClient.post()
+                .uri(url)
+                .body(BodyInserters.fromValue(dto))
+                .exchange().block()).bodyToMono(String.class)
+                .block();
+        log.debug("WebClient Response: {}", response);
     }
 }

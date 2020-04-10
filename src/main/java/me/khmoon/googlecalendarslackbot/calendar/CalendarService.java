@@ -4,6 +4,7 @@ import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.Events;
+import lombok.extern.slf4j.Slf4j;
 import me.khmoon.googlecalendarslackbot.calendar.domain.CalendarEvents;
 import me.khmoon.googlecalendarslackbot.calendar.domain.CalendarId;
 import me.khmoon.googlecalendarslackbot.calendar.domain.ReservationDateTime;
@@ -13,8 +14,6 @@ import me.khmoon.googlecalendarslackbot.calendar.exception.InsertingEventFailedE
 import me.khmoon.googlecalendarslackbot.calendar.exception.UpdatingEventFailedException;
 import me.khmoon.googlecalendarslackbot.common.MeetingRoom;
 import me.khmoon.googlecalendarslackbot.common.ReservationDetails;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -23,15 +22,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class CalendarService {
 
-    private static final Logger log = LoggerFactory.getLogger(CalendarService.class);
     protected static final String CANCELLED_EVENT_STATUS = "cancelled";
 
     @Value("${calendar.summary.delimiter:/}")
     private String summaryDelimiter;
 
-    private Calendar calendar;
+    private final Calendar calendar;
 
     public CalendarService(final Calendar calendar) {
         this.calendar = calendar;
