@@ -1,0 +1,10 @@
+credential:
+  filepath: /credentials.json
+calendar:
+  summary:
+    delimiter: /
+logging:
+  level:
+    com:
+      h3:
+        reservation: DEBUG
