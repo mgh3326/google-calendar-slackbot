@@ -1,6 +1,7 @@
 package me.khmoon.googlecalendarslackbot.calendar.domain;
 
 import com.google.api.services.calendar.model.Event;
+import lombok.RequiredArgsConstructor;
 import me.khmoon.googlecalendarslackbot.common.MeetingRoom;
 import me.khmoon.googlecalendarslackbot.utils.BasicParser;
 import org.apache.commons.lang3.StringUtils;
@@ -8,15 +9,12 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 public class CalendarEvents {
 
     private static final int INDEX_OF_MEETING_ROOM = 0;
 
     private final List<Event> events;
-
-    public CalendarEvents(List<Event> events) {
-        this.events = events;
-    }
 
     public List<String> findSummaries() {
         return events.stream()
