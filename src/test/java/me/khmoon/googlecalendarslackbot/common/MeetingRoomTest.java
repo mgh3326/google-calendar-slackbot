@@ -12,14 +12,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class MeetingRoomTest {
     @Test
     void findByName() {
-        MeetingRoom room = MeetingRoom.findByName("회의실1");
+        MeetingRoom room = MeetingRoom.findByName("Short");
         assertEquals(room, MeetingRoom.ROOM1);
     }
 
     @Test
     void removeAll() {
         List<MeetingRoom> rooms = Arrays.asList(MeetingRoom.ROOM3, MeetingRoom.ROOM4);
-        assertEquals(MeetingRoom.removeAll(rooms), Arrays.asList(MeetingRoom.ROOM1, MeetingRoom.ROOM2, MeetingRoom.ROOM5));
+        assertEquals(MeetingRoom.removeAll(rooms), Arrays.asList(MeetingRoom.ROOM1, MeetingRoom.ROOM2));
     }
 
     @Test

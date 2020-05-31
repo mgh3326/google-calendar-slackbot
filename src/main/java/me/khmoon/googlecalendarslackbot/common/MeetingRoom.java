@@ -5,11 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum MeetingRoom {
-    ROOM1("회의실1"),
-    ROOM2("회의실2"),
-    ROOM3("회의실3"),
-    ROOM4("회의실4"),
-    ROOM5("회의실5"),
+    ROOM1("Short"),
+    ROOM2("Tall"),
+    ROOM3("Grande"),
+    ROOM4("Venti"),
     NONE("");
 
     private String name;

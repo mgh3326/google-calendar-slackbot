@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ComponentTest {
     @Test
     void constructor() {
-        String room = "회의실1";
+        String room = "Short";
         String booker = "희봉";
         String purpose = "프로젝트 회의";
         Component component = Component.of(room, booker, purpose);

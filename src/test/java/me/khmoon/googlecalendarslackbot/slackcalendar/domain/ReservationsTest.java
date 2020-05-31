@@ -49,6 +49,6 @@ class ReservationsTest {
 
         Reservations reservations = Reservations.of(reservationList);
         List<MeetingRoom> meetingRooms = reservations.generateAvailableMeetingRooms();
-        assertEquals(meetingRooms, Arrays.asList(MeetingRoom.ROOM2, MeetingRoom.ROOM4, MeetingRoom.ROOM5));
+        assertEquals(meetingRooms, Arrays.asList(MeetingRoom.ROOM2, MeetingRoom.ROOM4));
     }
 }

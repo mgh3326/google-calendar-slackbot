@@ -32,10 +32,10 @@ class ReservationDetailsConverterTest {
     private static String[] unFormatted = {
             "회의실/제목/목적"
             , "회의실//목적"
-            , "회의실2//"
+            , "Tall//"
             , "//"
-            , "회의실2,//제목/"
-            , "회의실2,제목,목적제목/"
+            , "Tall,//제목/"
+            , "Tall,제목,목적제목/"
             , "으아앙"
     };
 

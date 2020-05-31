@@ -13,7 +13,7 @@ class ReservationConverterTest {
 
     @Test
     void toReservation() {
-        Event event = createEvent("1", "회의실1/희봉/프로젝트", "2019-12-10T10:30:00.000+09:00", "2019-12-10T12:00:00.000+09:00");
+        Event event = createEvent("1", "Short/희봉/프로젝트", "2019-12-10T10:30:00.000+09:00", "2019-12-10T12:00:00.000+09:00");
         Reservation slackCalendarReservation = Reservation.of("1", MeetingRoom.ROOM1, "희봉", "프로젝트", "2019-12-10", "10:30", "12:00");
         assertEquals(ReservationConverter.toReservation(event, "/").get(), slackCalendarReservation);
     }

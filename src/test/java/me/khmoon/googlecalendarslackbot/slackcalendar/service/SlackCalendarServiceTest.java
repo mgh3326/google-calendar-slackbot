@@ -46,10 +46,10 @@ class SlackCalendarServiceTest {
         String date = "2019-12-10";
 
         List<Event> googleEvents = new ArrayList<>();
-        googleEvents.add(createEvent("1", "회의실1/희봉/프로젝트", date, "10:30", "12:00"));
-        googleEvents.add(createEvent("2", "회의실2/도넛/굴러간다", date, "11:00", "12:00"));
-        googleEvents.add(createEvent("3", "회의실1/코니/회고", date, "13:00", "15:30"));
-        googleEvents.add(createEvent("4", "회의실3/버디/회의", date, "17:00", "18:00"));
+        googleEvents.add(createEvent("1", "Short/희봉/프로젝트", date, "10:30", "12:00"));
+        googleEvents.add(createEvent("2", "Tall/도넛/굴러간다", date, "11:00", "12:00"));
+        googleEvents.add(createEvent("3", "Short/코니/회고", date, "13:00", "15:30"));
+        googleEvents.add(createEvent("4", "Grande/버디/회의", date, "17:00", "18:00"));
 
         when(calendarService.findEvents(any(), any())).thenReturn(new CalendarEvents(googleEvents));
 
@@ -72,10 +72,10 @@ class SlackCalendarServiceTest {
         String date = "2019-12-10";
 
         List<Event> googleEvents = new ArrayList<>();
-        googleEvents.add(createEvent("1", "회의실1/희봉/프로젝트", date, "10:30", "12:00"));
-        googleEvents.add(createEvent("2", "회의실2/도넛", date, "11:00", "12:00"));
-        googleEvents.add(createEvent("3", "회의실1//", date, "13:00", "15:30"));
-        googleEvents.add(createEvent("4", "회의실13/희봉/프로젝트", date, "17:00", "18:00"));
+        googleEvents.add(createEvent("1", "Short/희봉/프로젝트", date, "10:30", "12:00"));
+        googleEvents.add(createEvent("2", "Tall/도넛", date, "11:00", "12:00"));
+        googleEvents.add(createEvent("3", "Short//", date, "13:00", "15:30"));
+        googleEvents.add(createEvent("4", "Short3/희봉/프로젝트", date, "17:00", "18:00"));
 
         when(calendarService.findEvents(any(), any())).thenReturn(new CalendarEvents(googleEvents));
 

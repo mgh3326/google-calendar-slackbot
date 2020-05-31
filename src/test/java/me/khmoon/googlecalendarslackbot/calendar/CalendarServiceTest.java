@@ -180,7 +180,7 @@ class CalendarServiceTest {
     void create_NotAvailableReserveEventException() throws IOException {
         Events eventsInCalendar = new Events();
         Event event = dummyEvents.get(2);
-        event.setSummary("회의실1/버디/프로젝트");
+        event.setSummary("Short/버디/프로젝트");
         eventsInCalendar.setItems(Collections.singletonList(event));
 
         when(calendar.events()).thenReturn(events);
@@ -206,7 +206,7 @@ class CalendarServiceTest {
     void updateEvent() throws IOException {
         Events eventsInCalendar = new Events();
         Event event = dummyEvents.get(0);
-        event.setSummary("회의실1/버디/프로젝트");
+        event.setSummary("Short/버디/프로젝트");
         eventsInCalendar.setItems(Collections.singletonList(event));
 
         when(calendar.events()).thenReturn(events);
