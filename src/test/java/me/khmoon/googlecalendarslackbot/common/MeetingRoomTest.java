@@ -10,22 +10,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MeetingRoomTest {
-    @Test
-    void findByName() {
-        MeetingRoom room = MeetingRoom.findByName("Short");
-        assertEquals(room, MeetingRoom.ROOM1);
-    }
+  @Test
+  void findByName() {
+    MeetingRoom room = MeetingRoom.findByName(MeetingRoom.ROOM1.getName());
+    assertEquals(room, MeetingRoom.ROOM1);
+  }
 
-    @Test
-    void removeAll() {
-        List<MeetingRoom> rooms = Arrays.asList(MeetingRoom.ROOM3, MeetingRoom.ROOM4);
-        assertEquals(MeetingRoom.removeAll(rooms), Arrays.asList(MeetingRoom.ROOM1, MeetingRoom.ROOM2));
-    }
+  @Test
+  void removeAll() {
+    List<MeetingRoom> rooms = Arrays.asList(MeetingRoom.ROOM3, MeetingRoom.ROOM4);
+    assertEquals(MeetingRoom.removeAll(rooms), Arrays.asList(MeetingRoom.ROOM1, MeetingRoom.ROOM2));
+  }
 
-    @Test
-    void removeAll_exception() {
-        List<MeetingRoom> allRooms = new ArrayList<>(Arrays.asList(MeetingRoom.values()));
-        allRooms.remove(MeetingRoom.NONE);
-        assertThrows(NotFoundAvailableMeetingRoomException.class, () -> MeetingRoom.removeAll(allRooms));
-    }
+  @Test
+  void removeAll_exception() {
+    List<MeetingRoom> allRooms = new ArrayList<>(Arrays.asList(MeetingRoom.values()));
+    allRooms.remove(MeetingRoom.NONE);
+    assertThrows(NotFoundAvailableMeetingRoomException.class, () -> MeetingRoom.removeAll(allRooms));
+  }
 }

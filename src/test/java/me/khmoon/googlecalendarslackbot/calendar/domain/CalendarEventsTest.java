@@ -11,54 +11,54 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CalendarEventsTest {
-    private List<Event> events;
+  private List<Event> events;
 
-    @BeforeEach
-    void setUp() {
-        Event event1 = new Event().setSummary("회의실 1 / 버디 / 스터디").setId("event1");
-        Event event2 = new Event().setSummary("회의실 2 / 닉 / 프로젝트").setId("event2");
-        Event event3 = new Event().setSummary("회의실 3 / 코니 / 미션").setId("event3");
+  @BeforeEach
+  void setUp() {
+    Event event1 = new Event().setSummary("(S) [티팍] 카카오 센터지원실").setId("event1");
+    Event event2 = new Event().setSummary("(T) [jason ben bran cooper] Bifan 스펙 확정 회의").setId("event2");
+    Event event3 = new Event().setSummary("(G) [robin] 서버팀 회식").setId("event3");
 
-        events = Arrays.asList(event1, event2, event3);
-    }
+    events = Arrays.asList(event1, event2, event3);
+  }
 
-    @Test
-    void findSummaries() {
-        CalendarEvents calendarEvents = new CalendarEvents(events);
+  @Test
+  void findSummaries() {
+    CalendarEvents calendarEvents = new CalendarEvents(events);
 
-        List<String> summaries = calendarEvents.findSummaries();
+    List<String> summaries = calendarEvents.findSummaries();
 
-        assertThat(summaries).isEqualTo(Arrays.asList("회의실 1 / 버디 / 스터디", "회의실 2 / 닉 / 프로젝트", "회의실 3 / 코니 / 미션"));
-    }
+    assertThat(summaries).isEqualTo(Arrays.asList("(S) [티팍] 카카오 센터지원실", "(T) [jason ben bran cooper] Bifan 스펙 확정 회의", "(G) [robin] 서버팀 회식"));
+  }
 
-    @Test
-    void findMeetingRooms() {
-        CalendarEvents calendarEvents = new CalendarEvents(events);
+  @Test
+  void findMeetingRooms() {
+    CalendarEvents calendarEvents = new CalendarEvents(events);
 
-        List<MeetingRoom> meetingRooms = calendarEvents.findMeetingRooms("/");
+    List<MeetingRoom> meetingRooms = calendarEvents.findMeetingRooms();
 
-        assertThat(meetingRooms).isEqualTo(Arrays.asList(MeetingRoom.ROOM1, MeetingRoom.ROOM2, MeetingRoom.ROOM3));
-    }
+    assertThat(meetingRooms).isEqualTo(Arrays.asList(MeetingRoom.ROOM1, MeetingRoom.ROOM2, MeetingRoom.ROOM3));
+  }
 
-    @Test
-    void size() {
-        assertThat(events.size()).isEqualTo(3);
-    }
+  @Test
+  void size() {
+    assertThat(events.size()).isEqualTo(3);
+  }
 
-    @Test
-    void getEvent() {
-        CalendarEvents calendarEvents = new CalendarEvents(events);
+  @Test
+  void getEvent() {
+    CalendarEvents calendarEvents = new CalendarEvents(events);
 
-        assertThat(calendarEvents.getEvent(0)).isEqualTo(events.get(0));
-        assertThat(calendarEvents.getEvent(1)).isEqualTo(events.get(1));
-        assertThat(calendarEvents.getEvent(2)).isEqualTo(events.get(2));
-    }
+    assertThat(calendarEvents.getEvent(0)).isEqualTo(events.get(0));
+    assertThat(calendarEvents.getEvent(1)).isEqualTo(events.get(1));
+    assertThat(calendarEvents.getEvent(2)).isEqualTo(events.get(2));
+  }
 
-    @Test
-    void excludeEventBy() {
-        CalendarEvents calendarEvents = new CalendarEvents(events);
-        CalendarEvents filteredEvents = calendarEvents.excludeEventBy("event1");
+  @Test
+  void excludeEventBy() {
+    CalendarEvents calendarEvents = new CalendarEvents(events);
+    CalendarEvents filteredEvents = calendarEvents.excludeEventBy("event1");
 
-        assertThat(filteredEvents.getEventsWithNotEmptySummary()).isEqualTo(Arrays.asList(events.get(1), events.get(2)));
-    }
+    assertThat(filteredEvents.getEventsWithNotEmptySummary()).isEqualTo(Arrays.asList(events.get(1), events.get(2)));
+  }
 }

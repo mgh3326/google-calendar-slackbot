@@ -16,17 +16,17 @@ class ReservationDetailsConverterTest {
 
     @Test
     void transferReservationDetails() {
-        String summary = " 회의실 2 / 버디 / 프로젝트";
-        String summary2 = " 회의실 2 / 버디 /";
-        String summary3 = " 회의실 2 / 버디 ";
+        String summary = " (G) [jason ben bran cooper] Bifan 스펙 확정 회의";
+        String summary2 = " ( G)[jason ben bran cooper] ";
+        String summary3 = " ( G)[ jason ben bran cooper] ";
 
-        ReservationDetails reservationDetails = ReservationDetailsConverter.toReservationDetails(summary, "/");
-        ReservationDetails reservationDetails2 = ReservationDetailsConverter.toReservationDetails(summary2, "/");
-        ReservationDetails reservationDetails3 = ReservationDetailsConverter.toReservationDetails(summary3, "/");
+        ReservationDetails reservationDetails = ReservationDetailsConverter.toReservationDetails(summary);
+        ReservationDetails reservationDetails2 = ReservationDetailsConverter.toReservationDetails(summary2);
+        ReservationDetails reservationDetails3 = ReservationDetailsConverter.toReservationDetails(summary3);
 
-        assertEquals(reservationDetails, ReservationDetails.of(MeetingRoom.ROOM2, "버디", "프로젝트"));
-        assertEquals(reservationDetails2, ReservationDetails.of(MeetingRoom.ROOM2, "버디", ""));
-        assertEquals(reservationDetails3, ReservationDetails.of(MeetingRoom.ROOM2, "버디", ""));
+        assertEquals(reservationDetails, ReservationDetails.of(MeetingRoom.ROOM3, "jason ben bran cooper", "Bifan 스펙 확정 회의"));
+        assertEquals(reservationDetails2, ReservationDetails.of(MeetingRoom.ROOM3, "jason ben bran cooper", ""));
+        assertEquals(reservationDetails3, ReservationDetails.of(MeetingRoom.ROOM3, "jason ben bran cooper", ""));
     }
 
     private static String[] unFormatted = {
@@ -42,7 +42,7 @@ class ReservationDetailsConverterTest {
     @ParameterizedTest
     @MethodSource("unFormattedSummaries")
     void isFormattedError(final String summary) {
-        assertThrows(InvalidSummaryException.class, () -> ReservationDetailsConverter.toReservationDetails(summary, "/"));
+        assertThrows(InvalidSummaryException.class, () -> ReservationDetailsConverter.toReservationDetails(summary));
     }
 
     private static Stream<String> unFormattedSummaries() {

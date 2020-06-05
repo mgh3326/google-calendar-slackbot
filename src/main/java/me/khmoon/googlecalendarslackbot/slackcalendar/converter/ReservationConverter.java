@@ -26,10 +26,10 @@ public class ReservationConverter {
     private ReservationConverter() {
     }
 
-    public static Optional<Reservation> toReservation(Event event, String summaryDelimiter) {
+    public static Optional<Reservation> toReservation(Event event) {
         try {
             String summary = event.getSummary();
-            ReservationDetails reservationDetails = ReservationDetailsConverter.toReservationDetails(summary, summaryDelimiter);
+            ReservationDetails reservationDetails = ReservationDetailsConverter.toReservationDetails(summary);
 
             String startDateTime = event.getStart().getDateTime().toString();
             String endDateTime = event.getEnd().getDateTime().toString();

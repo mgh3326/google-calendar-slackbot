@@ -46,10 +46,10 @@ class SlackCalendarServiceTest {
         String date = "2019-12-10";
 
         List<Event> googleEvents = new ArrayList<>();
-        googleEvents.add(createEvent("1", "Short/희봉/프로젝트", date, "10:30", "12:00"));
-        googleEvents.add(createEvent("2", "Tall/도넛/굴러간다", date, "11:00", "12:00"));
-        googleEvents.add(createEvent("3", "Short/코니/회고", date, "13:00", "15:30"));
-        googleEvents.add(createEvent("4", "Grande/버디/회의", date, "17:00", "18:00"));
+        googleEvents.add(createEvent("1", "(S) [희봉] 프로젝트", date, "10:30", "12:00"));
+        googleEvents.add(createEvent("2", "(T) [도넛] 굴러간다", date, "11:00", "12:00"));
+        googleEvents.add(createEvent("3", "(G) [코니] 회고", date, "13:00", "15:30"));
+        googleEvents.add(createEvent("4", "(V) [버디] 회의", date, "17:00", "18:00"));
 
         when(calendarService.findEvents(any(), any())).thenReturn(new CalendarEvents(googleEvents));
 
@@ -61,8 +61,8 @@ class SlackCalendarServiceTest {
         List<Reservation> reservationList = new ArrayList<>();
         reservationList.add(Reservation.of("1", MeetingRoom.ROOM1, "희봉", "프로젝트", date, "10:30", "12:00"));
         reservationList.add(Reservation.of("2", MeetingRoom.ROOM2, "도넛", "굴러간다", date, "11:00", "12:00"));
-        reservationList.add(Reservation.of("3", MeetingRoom.ROOM1, "코니", "회고", date, "13:00", "15:30"));
-        reservationList.add(Reservation.of("4", MeetingRoom.ROOM3, "버디", "회의", date, "17:00", "18:00"));
+        reservationList.add(Reservation.of("3", MeetingRoom.ROOM3, "코니", "회고", date, "13:00", "15:30"));
+        reservationList.add(Reservation.of("4", MeetingRoom.ROOM4, "버디", "회의", date, "17:00", "18:00"));
 
         assertEquals(reservations, Reservations.of(reservationList));
     }
@@ -72,8 +72,8 @@ class SlackCalendarServiceTest {
         String date = "2019-12-10";
 
         List<Event> googleEvents = new ArrayList<>();
-        googleEvents.add(createEvent("1", "Short/희봉/프로젝트", date, "10:30", "12:00"));
-        googleEvents.add(createEvent("2", "Tall/도넛", date, "11:00", "12:00"));
+        googleEvents.add(createEvent("1", "(S) [희봉] 프로젝트", date, "10:30", "12:00"));
+        googleEvents.add(createEvent("2", "(T) [도넛] ", date, "11:00", "12:00"));
         googleEvents.add(createEvent("3", "Short//", date, "13:00", "15:30"));
         googleEvents.add(createEvent("4", "Short3/희봉/프로젝트", date, "17:00", "18:00"));
 

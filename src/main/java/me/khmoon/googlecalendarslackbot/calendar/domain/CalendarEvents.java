@@ -23,9 +23,9 @@ public class CalendarEvents {
             .collect(Collectors.toList());
     }
 
-    public List<MeetingRoom> findMeetingRooms(final String summaryDelimiter) {
+    public List<MeetingRoom> findMeetingRooms() {
         return findSummaries().stream()
-            .map(summary -> BasicParser.parse(summary, summaryDelimiter))
+            .map(BasicParser::meetingRoomParse)
             .map(tokens -> tokens.get(INDEX_OF_MEETING_ROOM))
             .map(roomName -> roomName.replace(" ", ""))
             .map(MeetingRoom::findByName)

@@ -44,7 +44,7 @@ public class SlackCalendarService {
 
         return Reservations.of(
             reservation.getEventsWithNotEmptySummary().stream()
-                .map(event -> ReservationConverter.toReservation(event, summaryDelimiter))
+                .map(event -> ReservationConverter.toReservation(event))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .sorted(Comparator.comparing(Reservation::getFormattedStartTime))
@@ -56,7 +56,7 @@ public class SlackCalendarService {
         CalendarEvents reservations = calendarService.findEvents(ReservationDateTime.of(date), CalendarId.from(calendarId));
         return Reservations.of(
             reservations.getEventsWithNotEmptySummary().stream()
-                .map(event -> ReservationConverter.toReservation(event, summaryDelimiter))
+                .map(event -> ReservationConverter.toReservation(event))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .filter(reservation -> reservation.isSameBooker(booker))
@@ -68,7 +68,7 @@ public class SlackCalendarService {
     public Reservation retrieveById(String id) {
         Event event = calendarService.findEventById(id, CalendarId.from(calendarId))
             .orElseThrow(InvalidEventException::new);
-        return ReservationConverter.toReservation(event, summaryDelimiter)
+        return ReservationConverter.toReservation(event)
             .orElseThrow(InvalidEventException::new);
     }
 
@@ -81,7 +81,7 @@ public class SlackCalendarService {
         Event event = calendarService.insertEvent(ReservationDateTime.of(dateTime.getFormattedDate(),
             dateTime.getFormattedStartTime(), dateTime.getFormattedEndTime())
             , details, CalendarId.from(calendarId));
-        return ReservationConverter.toReservation(event, summaryDelimiter)
+        return ReservationConverter.toReservation(event)
             .orElseThrow(InvalidEventException::new);
     }
 
@@ -91,7 +91,7 @@ public class SlackCalendarService {
             ReservationDateTime.of(preReservation.getFormattedDate(), preReservation.getFormattedStartTime(), preReservation.getFormattedEndTime()),
             preReservation.getDetails(), CalendarId.from(calendarId)
         );
-        return ReservationConverter.toReservation(event, summaryDelimiter)
+        return ReservationConverter.toReservation(event)
             .orElseThrow(InvalidEventException::new);
     }
 
