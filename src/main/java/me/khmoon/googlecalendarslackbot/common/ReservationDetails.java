@@ -19,7 +19,7 @@ public class ReservationDetails {
     }
 
     public boolean isSameBooker(String booker) {
-        return this.booker.equals(booker);
+        return this.booker.contains(booker);
     }
 
     public MeetingRoom getMeetingRoom() {
