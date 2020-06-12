@@ -8,10 +8,10 @@ import java.util.*;
 @ToString
 @Getter
 public enum MeetingRoom {
-  ROOM1("short"),
-  ROOM2("tall"),
-  ROOM3("grande"),
-  ROOM4("venti"),
+  ROOM1("S"),
+  ROOM2("T"),
+  ROOM3("G"),
+  ROOM4("V"),
   NONE("");
 
   private String name;
@@ -20,6 +20,10 @@ public enum MeetingRoom {
     put("t", MeetingRoom.ROOM2.name);
     put("g", MeetingRoom.ROOM3.name);
     put("v", MeetingRoom.ROOM4.name);
+    put("short", MeetingRoom.ROOM1.name);
+    put("tall", MeetingRoom.ROOM2.name);
+    put("grande", MeetingRoom.ROOM3.name);
+    put("venti", MeetingRoom.ROOM4.name);
   }};
 
   MeetingRoom(String name) {
