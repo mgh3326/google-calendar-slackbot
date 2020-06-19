@@ -3,3 +3,6 @@ credential:
 calendar:
   summary:
     delimiter: /
+logging:
+  level:
+    root: debug
