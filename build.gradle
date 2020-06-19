@@ -46,6 +46,7 @@ dependencies {
     implementation 'com.google.apis:google-api-services-calendar:v3-rev20200517-1.30.9'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.apache.commons:commons-lang3'
+    implementation 'com.google.auth:google-auth-library-oauth2-http:0.20.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-webflux' //추가 한 것
 }
 
