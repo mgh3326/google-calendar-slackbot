@@ -22,8 +22,8 @@ public class CommonResponseFactory {
     private static final int MIN_HOUR = 10;
     private static final int MAX_HOUR = 21;
     private static final int MIN_MINUTE = 0;
-    private static final int MAX_MINUTE = 50;
-    private static final int MINUTE_INTERVAL = 10;
+    private static final int MAX_MINUTE = 45;
+    private static final int MINUTE_INTERVAL = 15;
 
     public static DatepickerElement generateDatePickerWithInitValue(String actionId, String initDate) {
         return new DatepickerElement(actionId, initDate);

@@ -22,7 +22,7 @@ public class RetrieveInputResponseFactory {
     private static final int MIN_HOUR = 10;
     private static final int MAX_HOUR = 21;
     private static final int MIN_MINUTE = 0;
-    private static final int MAX_MINUTE = 50;
+    private static final int MAX_MINUTE = 45;
 
     public static ModalResponse of(String triggerId) {
         DatepickerElement datePicker = new DatepickerElement("datepicker", generateNowDate());
