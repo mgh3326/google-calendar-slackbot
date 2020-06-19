@@ -1,0 +1,8 @@
+spring:
+  profiles: dev
+logging:
+  level:
+    root: info
+    me:
+      khmoon:
+        googlecalendarslackbot: debug

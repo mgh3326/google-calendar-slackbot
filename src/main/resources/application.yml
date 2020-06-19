@@ -3,9 +3,3 @@ credential:
 calendar:
   summary:
     delimiter: /
-logging:
-  level:
-    root: info
-    me:
-      khmoon:
-        googlecalendarslackbot: debug
