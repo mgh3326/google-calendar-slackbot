@@ -1,3 +1,9 @@
 spring:
   profiles: prod
+logging:
+  level:
+    root: info
+    me:
+      khmoon:
+        googlecalendarslackbot: info
 
