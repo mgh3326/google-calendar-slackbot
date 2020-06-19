@@ -5,7 +5,7 @@ calendar:
     delimiter: /
 logging:
   level:
+    root: info
     me:
       khmoon:
-        googlecalendarslackbot: INFO
-my-values:
+        googlecalendarslackbot: debug
