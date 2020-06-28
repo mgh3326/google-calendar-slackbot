@@ -20,43 +20,43 @@ import java.util.List;
  * @date 2019-12-11
  */
 public class ReserveResultResponseFactory {
-    public static ModalUpdateResponse of(Reservation reserve) {
-        return new ModalUpdateResponse(
+  public static ModalUpdateResponse of(Reservation reserve) {
+    return new ModalUpdateResponse(
             new ModalView(
-                ModalSubmissionType.RESERVE_RESULT,
-                new PlainText("예약하기"),
-                new PlainText("확인"),
-                generateBlocks(reserve),
-                true
+                    ModalSubmissionType.RESERVE_RESULT,
+                    new PlainText("예약하기"),
+                    new PlainText("확인"),
+                    generateBlocks(reserve),
+                    true
             )
-        );
-    }
+    );
+  }
 
-    private static List<Block> generateBlocks(Reservation reservation) {
-        List<Block> blocks = new ArrayList<>();
-        addTitleBlock(blocks);
-        addReserveBlocks(blocks, reservation);
-        return blocks;
-    }
+  private static List<Block> generateBlocks(Reservation reservation) {
+    List<Block> blocks = new ArrayList<>();
+    addTitleBlock(blocks);
+    addReserveBlocks(blocks, reservation);
+    return blocks;
+  }
 
-    private static void addTitleBlock(List<Block> blocks) {
-        blocks.add(new SectionBlock(new PlainText(":tada: 예약이 완료되었습니다!")));
-        blocks.add(new DividerBlock());
-    }
+  private static void addTitleBlock(List<Block> blocks) {
+    blocks.add(new SectionBlock(new PlainText(":tada: 예약 신청이 완료 되었습니다!")));
+    blocks.add(new DividerBlock());
+  }
 
-    private static void addReserveBlocks(List<Block> blocks, Reservation reservation) {
-        blocks.add(generateReserve(reservation.getDescription(), reservation.getBooker(), reservation.getRoom().getName()
+  private static void addReserveBlocks(List<Block> blocks, Reservation reservation) {
+    blocks.add(generateReserve(reservation.getDescription(), reservation.getBooker(), reservation.getRoom().getName()
             , reservation.getFormattedDate(), reservation.getFormattedStartTime(), reservation.getFormattedEndTime()));
-    }
+  }
 
-    private static SectionBlock generateReserve(String description, String booker, String room,
-                                                String date, String startTime, String endTime) {
-        return new SectionBlock(
+  private static SectionBlock generateReserve(String description, String booker, String room,
+                                              String date, String startTime, String endTime) {
+    return new SectionBlock(
             new MrkdwnText("*" + room + " / " + description + "*"),
             Arrays.asList(
-                new PlainText(booker),
-                new PlainText(date + " " + startTime + "-" + endTime)
+                    new PlainText(booker),
+                    new PlainText(date + " " + startTime + "-" + endTime)
             )
-        );
-    }
+    );
+  }
 }

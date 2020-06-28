@@ -137,7 +137,7 @@ public class SlackService {
         List<String> tokens = BasicParser.parse(request.getPrivateMetadata(), "_");
         DateTime dateTime = DateTime.of(tokens.get(0), tokens.get(1), tokens.get(2));
         ReservationDetails details = ReservationDetails.of(MeetingRoom.findByName(tokens.get(3)), request.getName(), request.getDescription());
-        return ReserveResultResponseFactory.of(slackCalendarService.reserve(details, dateTime));
+        return ReserveResultResponseFactory.of(slackCalendarService.reserveCall(details, dateTime));
     }
 
     public ModalUpdateResponse updateChangeAndCancelCandidateModal(ChangeRequest request) {

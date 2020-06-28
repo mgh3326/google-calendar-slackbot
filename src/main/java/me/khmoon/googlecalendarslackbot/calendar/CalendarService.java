@@ -126,7 +126,7 @@ public class CalendarService {
             .anyMatch(meetingRoom -> meetingRoom.equals(room));
   }
 
-  private Event createEventWith(final ReservationDateTime fetchingDate, final ReservationDetails reservationDetails) {
+  public Event createEventWith(final ReservationDateTime fetchingDate, final ReservationDetails reservationDetails) {
     EventDateTime startTime = fetchingDate.createEventDateTimeFromStartDateTime();
     EventDateTime endTime = fetchingDate.createEventDateTimeFromEndDateTime();
 
