@@ -4,6 +4,7 @@ import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.Events;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.khmoon.googlecalendarslackbot.calendar.domain.CalendarEvents;
 import me.khmoon.googlecalendarslackbot.calendar.domain.CalendarId;
@@ -14,6 +15,7 @@ import me.khmoon.googlecalendarslackbot.calendar.exception.InsertingEventFailedE
 import me.khmoon.googlecalendarslackbot.calendar.exception.UpdatingEventFailedException;
 import me.khmoon.googlecalendarslackbot.common.MeetingRoom;
 import me.khmoon.googlecalendarslackbot.common.ReservationDetails;
+import me.khmoon.googlecalendarslackbot.service.RestService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class CalendarService {
 
   protected static final String CANCELLED_EVENT_STATUS = "cancelled";
@@ -31,10 +34,7 @@ public class CalendarService {
   private String summaryDelimiter;
 
   private final Calendar calendar;
-
-  public CalendarService(final Calendar calendar) {
-    this.calendar = calendar;
-  }
+  private final RestService restService;
 
   public CalendarEvents findEvents(final ReservationDateTime fetchingDate, final CalendarId calendarId) {
     try {
@@ -106,6 +106,7 @@ public class CalendarService {
       Event insertedEvent = calendar.events()
               .insert(calendarId.getId(), newEvent)
               .execute();
+      restService.sendText(insertedEvent.getSummary() + " " + fetchingDate.toKoreanString() + " 등록 완료 되었습니다.");
       log.debug("inserted event : event id = {}", insertedEvent.getId());
       return insertedEvent;
     } catch (IOException e) {

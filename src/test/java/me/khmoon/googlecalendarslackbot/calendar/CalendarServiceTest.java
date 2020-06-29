@@ -10,12 +10,15 @@ import me.khmoon.googlecalendarslackbot.calendar.domain.CalendarId;
 import me.khmoon.googlecalendarslackbot.calendar.domain.ReservationDateTime;
 import me.khmoon.googlecalendarslackbot.common.MeetingRoom;
 import me.khmoon.googlecalendarslackbot.common.ReservationDetails;
+import me.khmoon.googlecalendarslackbot.service.RestService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
@@ -38,6 +41,9 @@ class CalendarServiceTest {
 
   @Mock
   private Calendar calendar;
+
+  @Mock
+  private RestService restService;
 
   @Mock
   private Calendar.Events events;
@@ -162,6 +168,7 @@ class CalendarServiceTest {
     when(list.setTimeMax(DateTime.parseRfc3339("2019-12-01T15:00:00.000+09:00"))).thenReturn(list);
     when(list.setSingleEvents(true)).thenReturn(list);
     when(list.execute()).thenReturn(eventsInCalendar);
+    when(restService.sendText(anyString())).thenReturn(true);
 
     ReservationDateTime reservationDateTime =
             ReservationDateTime.of("2019-12-01", "14:00:00", "15:00:00");
