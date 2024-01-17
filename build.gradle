@@ -43,7 +43,7 @@ dependencies {
     }
     implementation 'org.springframework.boot:spring-boot-starter-tomcat'
     implementation 'com.google.api-client:google-api-client:1.30.9'
-    implementation 'com.google.apis:google-api-services-calendar:v3-rev20200517-1.30.9'
+    implementation 'com.google.apis:google-api-services-calendar:v3-rev20240111-2.0.0'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.apache.commons:commons-lang3'
     testImplementation 'org.springframework.boot:spring-boot-starter-webflux' //추가 한 것
